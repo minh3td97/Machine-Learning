@@ -61,6 +61,9 @@ def linear_loss_vectorized(W, X, y, reg):
     # regularization!                                                           #
     #############################################################################
     N, D = X.shape
+    y = y.reshape((N, 1))
+    W = W.reshape((D, 1))
+
     y_pred = X.dot(W)
     loss = sum((y_pred - y)**2)/(2*N)
     loss += 0.5*reg*sum(W*W)
@@ -71,5 +74,5 @@ def linear_loss_vectorized(W, X, y, reg):
     #############################################################################
     #                          END OF YOUR CODE                                 #
     #############################################################################
-
+    
     return loss, dW

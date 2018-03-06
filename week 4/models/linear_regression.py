@@ -26,26 +26,28 @@ class LinearRegression(object):
     if self.W is None:
       # lazily initialize W
       self.W = 0.001 * np.random.randn(dim, 1)
-
+    
     # Run gradient descent to optimize W
     loss_history = []
     for it in range(num_iters):
-
+      
       # evaluate loss and gradient
       loss, grad = self.loss(X, y, reg)
       loss_history.append(loss)
-
+      
       # perform parameter update
       #########################################################################
       # TODO:                                                                 #
       # Update the weights using the gradient and the learning rate.          #
       #########################################################################
       self.W -= learning_rate*grad
+      
       #########################################################################
       #                       END OF YOUR CODE                                #
       #########################################################################
 
       if verbose and it % 100 == 0:
+        print(grad)
         print('iteration %d / %d: loss %f' % (it, num_iters, loss))
 
     return loss_history
